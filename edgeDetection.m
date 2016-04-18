@@ -27,6 +27,5 @@ imshow(Ie)
 
 boundaries = bwboundaries(Ie);
 
-bdyLen = sort(cellfun('length',boundaries));
+[bdyLen,idx] = sort(cellfun('length',boundaries),1,'descend');
 
-boundaries{i}
