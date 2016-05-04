@@ -1,5 +1,5 @@
 
-bw = im2bw(Im,.5);
+bw = im2bw(k2,.5);
 bwb = bwboundaries(bw);
 bl = cellfun('length',bwb);
 [~,bm] = sort(bl,1,'descend');
@@ -12,4 +12,4 @@ imshow(bw);
 %imshow(I)
 
 hold on
-plot(bt(:,2),bt(:,1))
+plot(bt(:,2),bt(:,1),'rx')

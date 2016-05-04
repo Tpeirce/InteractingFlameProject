@@ -48,7 +48,7 @@ save(strcat(fileName{1}, '_Vectors.mat'), 'x','y','vx','vy', '-v7.3');
 vx_mean = squeeze(mean(vx,1));
 vy_mean = squeeze(mean(vy,1));
 
-save(strcat(fileName{1}, 'TimeAverageVectors.mat'), 'x','y','vx_mean','vy_mean', '-v7.3');
+save(strcat(fileName{1}, '_TimeAverageVectors.mat'), 'x','y','vx_mean','vy_mean', '-v7.3');
 
 clear vx vy x y time_avg_vorticity vx_mean vy_mean
 

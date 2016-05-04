@@ -12,7 +12,7 @@ dispRange = [0,128]; % display range, chosen automatically when []. Suggest [0,4
 
 Im = medfilt2(I,[n,n]); % median filter to blur salt & pepper noise
 
-Ig = imgaussfilt(Im,sigma);
+%Ig = imgaussfilt(Im,sigma);
 
 sigmaSpatial = min( size(I,2), size(I,1) ) / 16;
 sigmaRange = 0.1 *  (50-min(I(:)));
