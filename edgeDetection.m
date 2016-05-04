@@ -2,8 +2,8 @@ close all
 %I  = F.w; % source of image
 
 %%% Image Params
-n = 6; % median filter neighborhood size, 3 or 5 suggested
-sigma = .75;%0.02*(sqrt(2)*size(I,1)); % std deviation of Gaussian distribution for gaussian filter
+n = 5; % median filter neighborhood size, 3 or 5 suggested
+sigma = .75; % 0.02*(sqrt(2)*size(I,1)); % std deviation of Gaussian distribution for gaussian filter
 EDM = 'canny'; % edge detection method: canny, log, prewitt, roberts, sobel, zerocross
 edgeLevel = []; % threshold level, chosen automatically when []
 dispRange = [0,128]; % display range, chosen automatically when []. Suggest [0,4095] for 16 bit grayscale
