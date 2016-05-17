@@ -1,5 +1,5 @@
 tic
-%close all;
+close all;
 
 % remember to load vars in workspace
 
@@ -7,7 +7,7 @@ tic
 % laser sheet/camera FOV includes burner obstruction?/some zeros
 % removing it by removing rows with avg velocity less than .01, which is
 % arbitrary but should work
-vy_mean = squeeze(mean(vy,1));
+%vy_mean = squeeze(mean(vy,1));
 threshold = .01;
 rowsKeep = mean(abs(vy_mean),2) > threshold; % select rows that aren't mostly 0
 Fvy_mean = vy_mean(rowsKeep,:); % filter out first x rows
@@ -57,6 +57,9 @@ hold off;
 figure;
 zAx = [ linspace(min(vy_mean(:)),0,10), 0, max(vy_mean(:))];
 [C, ~] = contourf(vy_mean, zAx);
+hold on
+plot([center, center], get(gca,'ylim'),'b')
+colormap hot
 colorbar;
 figure;
 imagesc(flipud(binFound)) % image flipped because conventions, so unflip
