@@ -4,9 +4,6 @@ function [ boundaries ] = edgeFinder( I , multiple, rounds)
         Im = medfilt2(Im);
     end
     
-    centerline = 
-    
-    
     bwLevel = graythresh(uint8(Im));
     Ib = im2bw(uint8(Im),bwLevel);
     bwb = bwboundaries(Ib);
@@ -23,7 +20,14 @@ function [ boundaries ] = edgeFinder( I , multiple, rounds)
     [~, c3minIdx] = min(c3(:,1));
     [~, c4minIdx] = min(c4(:,1));
     
+    
+    centerline = imageCenterFinder(I);
+    
     if c1(c1minIdx,2) < centerline
+        bt1 = bwtraceboundary(Ib,c1(1,:),'NE'); 
+    else
+        bt1 = bwtraceboundary(Ib,c1(1,:),'NE'); 
+    end
     
     
     if multiple
