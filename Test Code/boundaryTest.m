@@ -1,5 +1,6 @@
 
-bw = im2bw(uint8(I),graythresh(uint8(I)));
+bw = im2bw(uint8(Im),graythresh(uint8(Im)));
+%e = edge(bw,'canny');
 bwb = bwboundaries(bw);
 bl = cellfun('length',bwb);
 [~,bm] = sort(bl,1,'descend');
@@ -14,5 +15,5 @@ imshow(bw);
 %imshow(I)
 
 hold on
-plot(bt(:,2),bt(:,1),'r.')
-plot(bt2(:,2),bt2(:,1),'g.')
+plot(bt(:,2),bt(:,1),'r')
+plot(bt2(:,2),bt2(:,1),'g')
