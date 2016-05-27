@@ -1,5 +1,5 @@
-I = squeeze(images(1,:,:));
-range = [0,4095];
+%I = squeeze(images(1,:,:));
+range = [0,2^8];
 
 w2 = wiener2(I);
 m2 = medfilt2(I);

@@ -33,8 +33,8 @@ binarized = im2bw(uint8(Im),bwLevel);
 
 Ie2 = edge(binarized,EDM,edgeLevel);
 
-figure; imshow(Ie2)
+figure; imshow(binarized)
 
-boundaries = bwboundaries(Ie);
+%boundaries = bwboundaries(Ie);
 
 [bdyLen,idx] = sort(cellfun('length',boundaries),1,'descend');

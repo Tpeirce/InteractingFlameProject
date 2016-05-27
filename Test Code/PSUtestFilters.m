@@ -1,5 +1,5 @@
 tic;
-m1 = medfilt2(I2);
+m1 = medfilt2(I);
 
 m10 = m1;
 for i = 1:9

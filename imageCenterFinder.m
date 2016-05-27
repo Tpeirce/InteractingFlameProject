@@ -14,9 +14,13 @@ shift = xcorr( pass1, pass2);
 [~, tctr ] = max(shift);
 center = (tctr)/size(I,1)/2; % (offset) + center, compensates for shift
 figure;
-imshow(I)
-hold on;
-plot([center, center], get(gca,'ylim'))
-hold off;
+
+testing = false;
+if testing
+    imshow(I)
+    hold on;
+    plot([center, center], get(gca,'ylim'))
+    hold off;
+end
 
 end

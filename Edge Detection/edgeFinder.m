@@ -1,61 +1,49 @@
-function [ boundaries ] = edgeFinder( I , multiple, rounds)
+function [ boundaries ] = edgeFinder( I , rounds, h)
+% I = image, rounds = number of rounds of median filter, h = figure handle
+% to plot to
+    
+    centerline = imageCenterFinder(I);
     Im = I;
-    for i = 1:rounds
-        Im = medfilt2(Im);
+    n=9;
+    for L = 1:rounds
+        Im = medfilt2(Im, [n n]);
     end
     
     bwLevel = graythresh(uint8(Im));
     Ib = im2bw(uint8(Im),bwLevel);
-    bwb = bwboundaries(Ib);
-    bl = cellfun('length',bwb);
-    [~,bm] = sort(bl,1,'descend');
-
-    % picking out 4 longest boundaries, for plotting/extraction
-    c1 = bwb{bm(1)}; 
-    c2 = bwb{bm(2)}; 
-    c3 = bwb{bm(3)}; 
-    c4 = bwb{bm(4)}; 
-    [~, c1minIdx] = min(c1(:,1));
-    [~, c2minIdx] = min(c2(:,1));
-    [~, c3minIdx] = min(c3(:,1));
-    [~, c4minIdx] = min(c4(:,1));
+    bwb = bwboundaries(Ib,8,'noholes'); % all boundaries of regions in the image
+    bl = cellfun('length',bwb); % length of all boundaries
+    [~,bm] = sort(bl,1,'descend'); % sorted length of all boundaries
+    sortedBWB = bwb(bm); % sorted list of all boundaries in image
     
+    % left side
     
-    centerline = imageCenterFinder(I);
-    
-    if c1(c1minIdx,2) < centerline
-        bt1 = bwtraceboundary(Ib,c1(1,:),'NE'); 
-    else
-        bt1 = bwtraceboundary(Ib,c1(1,:),'NE'); 
+    for L = 1:length(bwb)
+        workingBoundary = sortedBWB{L};
+        [~, tempIdx] = min(workingBoundary,[],1);
+        if workingBoundary(tempIdx,2) < centerline
+            break % using break feels like cheating
+        end
     end
-    
-    
-    if multiple
         
+    % right side
     
-    
-    bt1 = bwtraceboundary(Ib,c1(1,:),'NW'); 
-    bt2 = bwtraceboundary(Ib,c2(1,:),'NW'); 
-    
-    if multiple
-        
-        bt3 = bwtraceboundary(Ib,c3(1,:),'NW'); 
-        bt4 = bwtraceboundary(Ib,c4(1,:),'E'); 
+    for R = 1:length(bwb)
+        workingBoundary = sortedBWB{R};
+        [~, tempIdx] = min(workingBoundary,[],1);
+        if workingBoundary(tempIdx,2) > centerline
+            break % using break feels like cheating
+        end
     end
     
     
     
-    imshow(Ib);
-    %imshow(I)
-
-    hold on
-    plot(bt1(:,2),bt1(:,1),'r')
-    plot(bt2(:,2),bt2(:,1),'g')
+    % at this point, l and r should be indices of left and right boundaries
+    % in sortedBWB
     
-    if multiple
-        plot(bt3(:,2),bt3(:,1),'b')
-        plot(bt4(:,2),bt4(:,1),'k')
-    end
-    drawnow
+    bL = sortedBWB{L};
+    bR = sortedBWB{R};
+    
+    boundaries = {bL bR};
 end
 
