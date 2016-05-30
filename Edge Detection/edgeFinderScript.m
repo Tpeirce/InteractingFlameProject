@@ -8,13 +8,13 @@ multiple = 0;
 rounds = 1;
 range = [0 2^8];
 
-%im7Files = rdir('C:\Users\Tristan\Desktop\Research Data\InteractingFlameProject\Data\150402h\NonLinear_SubSlidingMin\*.im7');
+%im7Files = rdir('C:\Users\Tristan\Desktop\Research Data\InteractingFlameProject\Data\150402h\*.im7');
 
 for i = 1:length(im7Files)
     F = loadvec(im7Files{i});
     I = flipud(F.w');
     close
-    boundaries = edgeFinder(I, rounds, h);
+    boundaries = edgeFinder(I, rounds);
     
     bL = boundaries{1};
     bR = boundaries{2};

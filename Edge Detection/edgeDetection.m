@@ -29,11 +29,11 @@ end
 % b = bilateralFilter(Im,[],min(I(:)),max(I(:)), sigmaSpatial, sigmaRange,samplingSpatial,samplingRange);
 
 bwLevel = graythresh(Im);
-binarized = im2bw(uint8(Im),bwLevel);
+binarized = im2bw(uint8(Im),.5);
 
 Ie2 = edge(binarized,EDM,edgeLevel);
 
-figure; imshow(binarized)
+figure; imshow(Ie2)
 
 %boundaries = bwboundaries(Ie);
 
