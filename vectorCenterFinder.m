@@ -20,7 +20,7 @@ Fvy_mean = vy_mean(rowsRemove,:); % filter out rowsRemove rows
 %%% centerline
 pass1 = Fvy_mean(:)'; 
 pass2 = fliplr(pass1); 
-shift = xcorr( pass1, pass2, 128);
+shift = xcorr( pass1, pass2);
 [~, tctr ] = max(shift);
 center = (tctr)/size(Fvy_mean,1)/2; % (offset) + center, compensates for shift
 figure;
