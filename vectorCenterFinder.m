@@ -1,9 +1,12 @@
-function [ center ] = vectorCenterFinder( vy_mean )
+function [ center ] = vectorCenterFinder( field )
 
-%% work
+%% Finds center of vector field. Recommend time-averaged
+
+%%%% NOTE: This assumes columns are x, rows are y  %%%%
 
 % vy_mean is axial velocity
 % in Uy mean, cols are axial positions
+% 
 % first position is lateral position, second is axial
 
 % TODO: split along lateral position into two matrices, then
@@ -13,20 +16,29 @@ function [ center ] = vectorCenterFinder( vy_mean )
 % removing it by removing rows with avg velocity less than .01, which is
 % arbitrary but should work
 
-threshold = .01;
+%{
+% row removal section - removes rows which shouldn't matter but equally influence centerline
+ threshold = .01;
+ rowsRemove = mean(abs(vy_mean),2) > threshold; % selects rows with a high mean velocity to keep
+ Fvy_mean = vy_mean(rowsRemove,:); % filter out rowsRemove rows (selects rows to keep)
+%}
 
-rowsRemove = mean(abs(vy_mean),2) > threshold; % selects rows with a low mean velocity to remove
-Fvy_mean = vy_mean(rowsRemove,:); % filter out rowsRemove rows
 %%% centerline
-pass1 = Fvy_mean(:)'; 
-pass2 = fliplr(pass1); 
+field = squeeze(field);
+pass1 = field(:); 
+flipped = fliplr(field); 
+pass2 = flipped(:); 
 shift = xcorr( pass1, pass2);
 [~, tctr ] = max(shift);
-center = (tctr)/size(Fvy_mean,1)/2; % (offset) + center, compensates for shift
-figure;
-hold on;
-plot(vy_mean')
-plot([center, center], get(gca,'ylim'))
-hold off;
+center = (tctr)/size(field,1)/2; % (offset) + center, compensates for shift
 
-toc
+testing = false;
+if testing
+    figure;
+    hold on;
+    plot(field')
+    plot([center, center], get(gca,'ylim'))
+    hold off;
+end
+
+end

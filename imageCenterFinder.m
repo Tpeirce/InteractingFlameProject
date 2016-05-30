@@ -1,6 +1,6 @@
 function [ center ] = imageCenterFinder( I )
 
-%% work
+%% Finds image center
 
 % based on my code for vector centerline finder
 
@@ -16,7 +16,7 @@ shift = xcorr( pass1, pass2);%, size(I,1)/2);
 [~, tctr ] = max(shift); % temp center, ie maximum correlation coefficient for correlated vectors
 center = (tctr)/size(I,1)/2; % (offset) + center, compensates for shift
 
-testing = true;
+testing = false;
 if testing
     figure;
     image(I)
