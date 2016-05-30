@@ -46,11 +46,11 @@ function [ boundaries ] = edgeFinder( I , rounds)
     bL = sortedBWB{L};
     bR = sortedBWB{R};
     
-    maxLeft = max(bL,[],1);
-    maxRight = max(bL,[],1);
+    [~, maxLeft] = max(bL,[],1);
+    [~, maxRight] = max(bR,[],1);
     
     bL = bL(minLeft:maxLeft,:);
-    bR = bR(minRight:maxRight,:);
+    bR = [bR(maxRight:end,:); bR(1:minRight,:)];
     
     boundaries = {bL bR};
 end
