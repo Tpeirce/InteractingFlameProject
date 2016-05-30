@@ -5,7 +5,8 @@ function [ center ] = imageCenterFinder( I )
 % based on my code for vector centerline finder
 
 % TODO: split along lateral position into two matrices, then
-% run xcor on the vectorized matrix to find best shift
+% run xcor on the vectorized matrix to find best shift instead of
+% vectorizing whole matrix
 %%%%%%%%%%%% centerline %%%%%%%%%%%%%%%%%%%%%%%
 
 pass1 = I(:); 
@@ -13,11 +14,11 @@ pass2 = fliplr(pass1);
 shift = xcorr( pass1, pass2);
 [~, tctr ] = max(shift);
 center = (tctr)/size(I,1)/2; % (offset) + center, compensates for shift
-figure;
 
 testing = false;
 if testing
-    imshow(I)
+    figure;
+    image(I)
     hold on;
     plot([center, center], get(gca,'ylim'))
     hold off;
