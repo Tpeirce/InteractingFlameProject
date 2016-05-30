@@ -27,4 +27,12 @@ for i = 1:length(im7Files)
     plot(bR(:,2),bR(:,1),'g.')
     hold off;
     drawnow
+    %M(i) = getframe;
 end
+
+ %{ 
+    V = VideoWriter('flameEdgeTest.mp4','MPEG-4');
+    open(V);
+    writeVideo(V, M);
+    close(V)
+%}
