@@ -37,7 +37,7 @@ shift = xcorr( pass1, pass2);
 [~, tctr ] = max(shift);
 center = (tctr)/size(field,1)/2; % (offset) + center, compensates for shift
 
-testing = true;
+testing = false;
 if testing
     figure;
     hold on;

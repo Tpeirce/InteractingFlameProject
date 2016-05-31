@@ -1,7 +1,7 @@
 function [ boundaries ] = edgeFinder( I )
 % I = image, rounds = number of rounds of median filter
     
-    %% edgeFinder returns the full left and right edges in a cell array
+    %% edgeFinder returns the full left and right edges in a cell array as n by 2 matrices of coordinate locations
 
     centerline = imageCenterFinder(I);
     Im = I;
