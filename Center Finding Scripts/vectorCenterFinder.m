@@ -2,6 +2,7 @@ function [ center, confidence ] = vectorCenterFinder( field )
 
 %% Finds center of vector field. Recommend time-averaged
 
+% Assumes vectorfield centerline is perfectly vertical
 % center is returned as a double, to show the center
 
 %%%% NOTE: This assumes columns are x, rows are y  %%%%

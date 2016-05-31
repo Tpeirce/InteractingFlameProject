@@ -2,6 +2,7 @@ function [ center ] = imageCenterFinder( I )
 
 %% Finds image center
 
+% Assumes centerline is perfectly vertical to image
 % based on my code for vector centerline finder
 
 % TODO: split along lateral position into two matrices, then
