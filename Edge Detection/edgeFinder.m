@@ -1,8 +1,11 @@
-function [ boundaries ] = edgeFinder( I , rounds)
+function [ boundaries ] = edgeFinder( I )
 % I = image, rounds = number of rounds of median filter
     
+    %% edgeFinder returns the full left and right edges in a cell array
+
     centerline = imageCenterFinder(I);
     Im = I;
+    rounds = 1; % number of median filter iterations to perform
     n=9; % filter size
     connectivity = 8; % connectivity for bwboundaries
     
@@ -53,5 +56,9 @@ function [ boundaries ] = edgeFinder( I , rounds)
     bR = [bR(maxRight:end,:); bR(1:minRight,:)];
     
     boundaries = {bL bR};
+    
+    testing = false;
+    if testing
+        
+    
 end
-

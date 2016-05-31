@@ -1,6 +1,8 @@
-function [ center ] = vectorCenterFinder( field )
+function [ center, confidence ] = vectorCenterFinder( field )
 
 %% Finds center of vector field. Recommend time-averaged
+
+% center is returned as a double, to show the center
 
 %%%% NOTE: This assumes columns are x, rows are y  %%%%
 
@@ -24,6 +26,8 @@ function [ center ] = vectorCenterFinder( field )
 %}
 
 %%% centerline
+% this ends up being almost auto-convolution for a 2d matrix in one
+% dimension
 field = squeeze(field);
 pass1 = field(:); 
 flipped = fliplr(field); 

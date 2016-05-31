@@ -16,12 +16,12 @@ shift = xcorr( pass1, pass2);%, size(I,1)/2);
 [~, tctr ] = max(shift); % temp center, ie maximum correlation coefficient for correlated vectors
 center = (tctr)/size(I,1)/2; % (offset) + center, compensates for shift
 
-testing = true;
+testing = false;
 if testing
     figure;
     image(I)
     hold on;
-    plot([center, center], get(gca,'ylim'))
+    plot([center, center], get(gca,'ylim'),'r')
     hold off;
 end
 
