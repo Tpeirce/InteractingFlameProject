@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-cd 'C:\Users\Tristan\Desktop\Research Data\150319\Set of 3 to Test Against\150321g\NonLinear_SubSlidingMin'
+cd 'C:\Users\Tristan\Desktop\Research Data\150319\150402f\NonLinear_SubSlidingMin'
 
 bounds = 1:300;
 
