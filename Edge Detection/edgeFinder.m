@@ -16,6 +16,9 @@ function [ boundaries ] = edgeFinder( I )
     
     bwLevel = graythresh(uint8(Im));
     Ib = im2bw(uint8(Im),bwLevel);
+    
+    % bwareafilt something to look into - removes objects less than size
+    
     bwb = bwboundaries(Ib,connectivity,'noholes'); % all boundaries of regions in the image
     bl = cellfun('length',bwb); % length of all boundaries
     [~,bm] = sort(bl,1,'descend'); % sorted length of all boundaries

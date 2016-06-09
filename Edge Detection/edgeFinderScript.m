@@ -7,14 +7,17 @@ multiple = 0;
 
 rounds = 1;
 range = [0 2^8];
+if false(exist('im7Files'))
+    im7Files = rdir('C:\Users\Tristan\Desktop\Research Data\150319\Set of 3 to Test Against\150402h\*.im7');
+end
 
-%im7Files = rdir('C:\Users\Tristan\Desktop\Research Data\InteractingFlameProject\Data\150402h\*.im7');
+h = figure;
 
 for i = 1:length(im7Files)
     F = loadvec(im7Files{i});
     I = flipud(F.w');
-    close
-    boundaries = edgeFinder(I, rounds);
+    clf(h)
+    boundaries = edgeFinder(I);
     
     bL = boundaries{1};
     bR = boundaries{2};
@@ -26,6 +29,7 @@ for i = 1:length(im7Files)
     plot(bL(:,2),bL(:,1),'r.')
     plot(bR(:,2),bR(:,1),'g.')
     hold off;
+    title(['Frame = ' num2str(i)])
     drawnow
     %M(i) = getframe;
 end
