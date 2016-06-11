@@ -1,15 +1,16 @@
 
 multiple = 0;
 
+addpath('C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Edge Detection');
 % Idea: adaptive number of rounds depending on how many "small" (area<min)
 % areas are detected after binarizing. Could also try varying intensity
 % threshold
 
 rounds = 1;
 range = [0 2^8];
-if false(exist('im7Files'))
+%if exist('im7Files')
     im7Files = rdir('C:\Users\Tristan\Desktop\Research Data\150319\Set of 3 to Test Against\150402h\*.im7');
-end
+%end
 
 h = figure;
 
