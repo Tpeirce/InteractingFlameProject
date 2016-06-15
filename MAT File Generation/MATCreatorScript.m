@@ -27,9 +27,10 @@ subFolders(1:2) = [];
 % processes data in a loop
 for i = 1:length(subFolders)
     cd(subFolders(i).name);
+    pause(10)
     cd 'NonLinear_SubSlidingMin';
-    ImageMATFnBit();
-    cd 'TR_PIV_MP(2x16x16_50%ov)\PostProc';
+    ImageMATFn();
+    %cd 'TR_PIV_MP(2x16x16_50%ov)\PostProc';
     %VectorMATFn();
     cd(tld);
 end

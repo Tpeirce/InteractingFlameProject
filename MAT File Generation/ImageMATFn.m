@@ -15,7 +15,6 @@ y = F.y;
 
 save('images.mat', 'x','y','images', '-v7.3');
 clear F x y images im7List
-toc
 
 end
 
