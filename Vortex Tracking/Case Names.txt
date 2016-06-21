@@ -1,0 +1,35 @@
+160529e - 0mm
+29c - low amplitude
+29d - high amplitude
+
+
+160520c - 32 mm
+29a - low
+29b - high
+
+
+20d - 37 mm
+27a
+27b
+
+20e - 42 mm
+27c
+27d
+
+
+20f - 47 mm
+27e
+27f
+
+20g - 52 mm
+27g
+27h
+
+
+20h - 57 mm
+27i
+27j
+
+20i - 62 mm
+27k
+27l

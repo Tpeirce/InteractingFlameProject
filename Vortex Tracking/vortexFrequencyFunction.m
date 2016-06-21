@@ -1,15 +1,10 @@
-% Shear layer finding
+function [ ] = vortexFrequencyFunction( caseName )
 
-close all
-clear all
-clc
-
-addpath('C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160520f\160520f_DAT');
 
 % loading
 Fs = 4e3; % sampling frequency, 4 kHz
-Mvec = load('160520fTimeAverageVectors-2.mat');
-Mvor = load('160520f_Vectors-2.mat');
+Mvec = load([caseName 'TimeAverageVectors-2.mat']);
+Mvor = load([caseName '160527b_Vectors-2.mat']);
 Mvor.vorticity = vorticityFunction(Mvor.x,Mvor.y,Mvor.vx,Mvor.vy);
 Mvor.time_avg_vorticity = squeeze(mean(Mvor.vorticity,1));
 Mvor.x_norm = Mvec.x_norm;
@@ -34,4 +29,9 @@ for i = 1:size(time_avg_vorticity,1); % rows
 end
 
 mean_psd = mean(mean(PowerDist,3),2);
+figure;
 histogram(MaxFreq(:))
+xlabel('Frequency');
+ylabel('Power (vorticity)');
+end
+
