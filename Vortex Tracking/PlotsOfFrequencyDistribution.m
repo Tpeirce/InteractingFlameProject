@@ -44,7 +44,7 @@ caseI = 1; % case name index
 for i = 1:length(spacings);
 
 % unforced
-vortexFrequencyFunction(cases{caseI}); caseI = caseI + 1;
+vorticityFrequencyFunction(cases{caseI}); caseI = caseI + 1;
 title([spacings{i} 'mm , Unforced']);
 fileName = ['C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Figures\VorticityFrequency\' spacings{i}...
     'mmUnforced'];
