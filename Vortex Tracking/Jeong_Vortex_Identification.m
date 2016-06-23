@@ -3,7 +3,7 @@
 % test-against: loading
 
 addpath('C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b');
-load('160527b_Vectors-2.mat');
+%load('160527b_Vectors-2.mat');
 
 % preliminary setup work
 tld = pwd;
@@ -14,8 +14,8 @@ for frame = 1:length(vx);
 
 u = flipud(squeeze(vx(frame,:,:))); % input of lateral velocity
 v = flipud(squeeze(vy(frame,:,:))); % input of axial velocity
-x_m = x .* 1e-3; % mm to m, not using x_norm
-y_m = y .* 1e-3; % mm to m
+x_m = mean(diff(x)) .* 1e-3; % mm to m, not using x_norm
+y_m = mean(diff(y)) .* 1e-3; % mm to m
 
 [dudx, dudy] = gradient(u,x_m,y_m); % computing gradients, adjusted by actual distances x and y
 [dvdx, dvdy] = gradient(v,x_m,y_m);

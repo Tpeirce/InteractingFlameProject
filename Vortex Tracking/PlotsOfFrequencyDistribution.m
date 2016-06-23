@@ -1,7 +1,7 @@
 clear
 close all
 clc
-
+tic
 fontsize = 13;
 workingDir = ['F:\20160520' '\'];
 addpath(genpath([workingDir]));
@@ -48,7 +48,7 @@ vortexFrequencyFunction(cases{caseI}); caseI = caseI + 1;
 title([spacings{i} 'mm , Unforced']);
 fileName = ['C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Figures\VorticityFrequency\' spacings{i}...
     'mmUnforced'];
-savefig(fileName,'compact');
+savefig(gcf,fileName,'compact');
 print(fileName,'-dpng');
 
 % low forcing
@@ -56,7 +56,7 @@ vortexFrequencyFunction(cases{caseI}); caseI = caseI + 1;
 title([spacings{i} 'mm , Low Amplitude Forcing']);
 fileName = ['C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Figures\VorticityFrequency\' spacings{i}...
     'mmLowForced'];
-savefig(fileName,'compact');
+savefig(gcf,fileName,'compact');
 print(fileName,'-dpng');
 
 % high forcing
@@ -64,7 +64,8 @@ vortexFrequencyFunction(cases{caseI}); caseI = caseI + 1;
 title([spacings{i} 'mm , High Amplitude Forcing']);
 fileName = ['C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Figures\VorticityFrequency\' spacings{i}...
     'mmHighForced'];
-savefig(fileName,'compact');
+savefig(gcf,fileName,'compact');
 print(fileName,'-dpng');
 
 end
+toc

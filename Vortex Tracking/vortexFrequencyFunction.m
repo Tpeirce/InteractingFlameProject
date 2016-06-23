@@ -4,7 +4,7 @@ function [ ] = vortexFrequencyFunction( caseName )
 % loading
 Fs = 4e3; % sampling frequency, 4 kHz
 Mvec = load([caseName 'TimeAverageVectors-2.mat']);
-Mvor = load([caseName '160527b_Vectors-2.mat']);
+Mvor = load([caseName '_Vectors-2.mat']);
 Mvor.vorticity = vorticityFunction(Mvor.x,Mvor.y,Mvor.vx,Mvor.vy);
 Mvor.time_avg_vorticity = squeeze(mean(Mvor.vorticity,1));
 Mvor.x_norm = Mvec.x_norm;
