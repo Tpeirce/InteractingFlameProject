@@ -1,4 +1,4 @@
-function [ left_Coords, right_Coords ] = momentumThicknessFn( x_norm, vy_field, d, NominalBluffBodySpacing )
+function [ left_Coords, right_Coords ] = displacementThicknessFn( x_norm, vy_field, d, NominalBluffBodySpacing )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 

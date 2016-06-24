@@ -9,7 +9,7 @@ imagesc(x_norm,y_norm,flipud(vy_mean))
 set(gca,'ydir','normal')
 hold on
 
-[left_coords, right_coords] = momentumThicknessFn(x_norm,flipud(vy_mean),d,NominalBluffBodySpacing);
+[left_coords, right_coords] = displacementThicknessFn(x_norm,flipud(vy_mean),d,NominalBluffBodySpacing);
 
 plot(left_coords,y_norm,'.');
 plot(right_coords,y_norm,'.');
