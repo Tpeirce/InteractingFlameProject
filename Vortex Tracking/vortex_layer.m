@@ -10,8 +10,8 @@ addpath('C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160520f
 Fs = 4e3; % sampling frequency, 4 kHz
 Mvec = load('160520fTimeAverageVectors-2.mat');
 Mvor = load('160520f_Vectors-2.mat');
-Mvor.vorticity = vorticityFunction(Mvor.x,Mvor.y,Mvor.vx,Mvor.vy);
-Mvor.time_avg_vorticity = squeeze(mean(Mvor.vorticity,1));
+%Mvor.vorticity = vorticityFunction(Mvor.x,Mvor.y,Mvor.vx,Mvor.vy);
+%Mvor.time_avg_vorticity = squeeze(mean(Mvor.vorticity,1));
 Mvor.x_norm = Mvec.x_norm;
 Mvor.y_norm = Mvec.y_norm;
 Mvor = rmfield(Mvor,{'vx','vy'});

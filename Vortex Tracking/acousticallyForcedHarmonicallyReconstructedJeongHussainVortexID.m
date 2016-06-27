@@ -3,6 +3,7 @@ clear all
 close all
 clc
 
+tic
 addpath('C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Vortex Tracking');
 
 load('C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b\160527b_DAT\160527b_Vectors-2.mat');
@@ -13,15 +14,16 @@ clear vx;
 reconstructed_vy  = HarmonicReconstructionFn( 400, vy, 4e3 );
 clear vy;
 
+parpool(4)
 [ binVort ] = jeongVortexFunction( x, y, reconstructed_vx, reconstructed_vy );
 
 save('HarmonicallyReconstructed.mat');
-
+toc
 
 
 %% Plotting code 
 
-
+%{
 for frame = 1:size(binVort,1)
 
 binary_image = imresize(squeeze(binVort(frame,:,:)),8);
@@ -29,8 +31,9 @@ binary_image_filtered = binary_image; %bwareafilt(binary_image,[128 1e5]);
 
 F = loadvec(frame);
 seeded_image = flipud(uint8(F.w'));
-merged_image = imfuse(binary_image_filtered,seeded_image,'blend');
+merged_image = imfuse(flipud(binary_image_filtered),seeded_image,'blend');
 imshow(merged_image)
 title(num2str(frame))
 drawnow;
 end
+%}

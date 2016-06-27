@@ -8,8 +8,8 @@ reconstructed_field = zeros(size(field));
 t = (1:size(field,1))' / framerate;
 
 npts = size(field,1);
-f = Fs*(0:(npts/2))/npts;
-[~, omegaVec] = min(diff(f-imega));
+f = framerate*(0:(npts/2))/npts;
+[~, omegaVec] = min(abs(f-omega));
 
 
 % sweep through all 128x128 vectors
@@ -19,7 +19,7 @@ for yPos = 1:size(field,2)
         tempFFT = fft(field(:,yPos,xPos));
 
         % magnitude of FFT - becomes A
-        tempA = abs(tempFFT);
+        tempA = abs(tempFFT/npts.*2);
         tempA = tempA(omegaVec);
         % phase shift - becomes phi
         tempPhi = atan2(imag(tempFFT),real(tempFFT));

@@ -3,8 +3,10 @@ function [ binVort ] = jeongVortexFunction( x, y, vx, vy )
 
 binVort = false(size(vx));
 
+lenY = size(vx,2);
+lenX = size(vx,3);
 
-for frame = 1:length(vx);
+parfor frame = 1:length(vx);
 
     u = flipud(squeeze(vx(frame,:,:))); % input of lateral velocity
     v = flipud(squeeze(vy(frame,:,:))); % input of axial velocity
@@ -18,8 +20,8 @@ for frame = 1:length(vx);
     [dudx, dudy] = gradient(u,x_m,y_m); % computing gradients, adjusted by actual distances x and y
     [dvdx, dvdy] = gradient(v,x_m,y_m);
 
-    for i = 1:size(u,1)
-        for ii = 1:size(u,2)
+    for i = 1:lenY
+        for ii = 1:lenX
         
             del_u = [dudx(i,ii), dvdx(i,ii); dudy(i,ii), dvdy(i,ii)]; % taking tensor del_u at point (i,ii)
 
@@ -32,11 +34,8 @@ for frame = 1:length(vx);
 
             lambda = sortrows(lambda); % sorting eigenvalues
 
-            if lambda(2)<0
-                binVort(frame,i,ii) = true;
-            else
-                binVort(frame,i,ii) = false;
-            end
+            binVort(frame,i,ii) = lambda(2)<0; % sets logical based on lambda 2 criterion
+            
         end
     end
     
