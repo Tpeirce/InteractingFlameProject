@@ -6,6 +6,7 @@ binVort = false(size(vx));
 lenY = size(vx,2);
 lenX = size(vx,3);
 
+parpool(4)
 parfor frame = 1:length(vx);
 
     u = flipud(squeeze(vx(frame,:,:))); % input of lateral velocity
@@ -13,8 +14,8 @@ parfor frame = 1:length(vx);
     x_m = mean(diff(x)) .* 1e-3; % mm to m, not using x_norm
     y_m = mean(diff(y)) .* 1e-3; % mm to m, gets standard scalar for spacing in m
 
-    u(abs(u)>6e2) = 0; % if it's more than 600 m/s it's bogus
-    v(abs(v)>6e2) = 0; % if it's more than 600 m/s it's bogus
+    u(abs(u)>6e2) = 0; % if vx is more than 600 m/s it's bogus
+    v(abs(v)>6e2) = 0; % if vy is more than 600 m/s it's bogus
     % shouldn't be going more than ~2x speed of sound
     
     [dudx, dudy] = gradient(u,x_m,y_m); % computing gradients, adjusted by actual distances x and y
@@ -30,11 +31,15 @@ parfor frame = 1:length(vx);
 
             check_matrix = S^2 + Omega^2;
 
-            lambda = eig(check_matrix);
+            lambda = eig(check_matrix); % getting lambda values
 
             lambda = sortrows(lambda); % sorting eigenvalues
-
-            binVort(frame,i,ii) = lambda(2)<0; % sets logical based on lambda 2 criterion
+            
+            if length(lambda)>1
+                binVort(frame,i,ii) = lambda(2)<0; % sets logical based on lambda 2 criterion
+            else
+                binVort(frame,i,ii) = false;
+            end
             
         end
     end
