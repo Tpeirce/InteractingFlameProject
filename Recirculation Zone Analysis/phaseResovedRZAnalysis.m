@@ -4,7 +4,11 @@
 % vortex peak tracking
 
 close all; clc; tic
-addpath('C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Vortex Tracking');
+addpath('C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\Recirculation Zone Analysis');
+addpath('C:\Users\Tristan\Dropbox\Documents\School\Trinity\Venkateswaran Research\MATLAB Code\FFT Code');
+                                                                       %%%%
+cd 'C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b\'
+    
 
 if ~exist('vx','var') | ~exist('vy','var')
     clear; 
@@ -13,8 +17,6 @@ if ~exist('vx','var') | ~exist('vy','var')
     load('C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b\160527b_DAT\160527b_Vectors-2.mat');
                                                                              %%%%    %%%%        %%%%
     load('C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b\160527b_DAT\160527bTimeAverageVectors-2.mat', 'x_norm','y_norm');
-                                                                          %%%%
-    cd 'C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b\'
     vx = fliplr(vx);
     vy = fliplr(vy);
 end
@@ -45,7 +47,7 @@ end
 cMax = max(vy_single_cycle(:));
 cMin = min(vy_single_cycle(:));
 cbar = linspace(cMin-cMin*.1,cMax+cMax*.1,10);
-savefile = 'C:\Users\Tristan\Desktop\Research Data\160520_Flame_Interaction\160527b\phaseResolvedVy';
+savefile = 'phaseResolvedVy';
 framerate = 2;
 area = zeros(1,10);
 
@@ -81,3 +83,5 @@ area(11) = area(1);
     polar(0:2*pi/10:2*pi,area)
     set(gcf,'color','w');
 title('Recirculation Zone Area vs Phase Angle');
+
+print('RZAreavsPhaseAngle','-dpng')
