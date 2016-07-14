@@ -6,7 +6,7 @@ center = vectorCenterFinder(vy_mean);
 %% area finding
 %%% Assumptions: RZ is a convex polygon
 area = 0;
-binSearch = Fvy_mean <= 0; % creating a binary matrix to highlight RZ
+binSearch = vy_mean <= 0; % creating a binary matrix to highlight RZ
 binFound = false(size(binSearch));
 for i = 1:size(binSearch,1)
     if binSearch(i,center) == 1
